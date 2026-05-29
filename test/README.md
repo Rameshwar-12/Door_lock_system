@@ -1,47 +1,39 @@
-# Sample testbench for a Tiny Tapeout project
+Digital Door Lock Testbench
 
-This is a sample testbench for a Tiny Tapeout project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
-See below to get started or for more information, check the [website](https://tinytapeout.com/hdl/testing/).
+Overview
 
-## Setting up
+This testbench verifies the functionality of the Digital Door Lock System implemented in Verilog.
 
-1. Edit [Makefile](Makefile) and modify `PROJECT_SOURCES` to point to your Verilog files.
-2. Edit [tb.v](tb.v) and replace `tt_um_example` with your module name.
+The design checks a 4-bit password entered through the input pins. If the entered password matches "1010", the door unlocks. Otherwise, an error signal is generated.
 
-## How to run
+Test Cases
 
-To run the RTL simulation:
+Correct Password
 
-```sh
+Input:
+
+- ui_in = 1010
+
+Expected Output:
+
+- unlock = 1
+- error = 0
+
+Incorrect Password
+
+Input:
+
+- ui_in = 1111
+
+Expected Output:
+
+- unlock = 0
+- error = 1
+
+Running the Simulation
+
 make -B
-```
 
-To run gatelevel simulation, first harden your project and copy `../runs/wokwi/results/final/verilog/gl/{your_module_name}.v` to `gate_level_netlist.v`.
+Author
 
-Then run:
-
-```sh
-make -B GATES=yes
-```
-
-If you wish to save the waveform in VCD format instead of FST format, edit tb.v to use `$dumpfile("tb.vcd");` and then run:
-
-```sh
-make -B FST=
-```
-
-This will generate `tb.vcd` instead of `tb.fst`.
-
-## How to view the waveform file
-
-Using GTKWave
-
-```sh
-gtkwave tb.fst tb.gtkw
-```
-
-Using Surfer
-
-```sh
-surfer tb.fst
-```
+Rameshwar
