@@ -44,6 +44,9 @@ jobs:
     needs: gds
     runs-on: ubuntu-24.04
 
+    environment:
+      name: github-pages
+
     permissions:
       pages: write
       id-token: write
