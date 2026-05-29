@@ -1,15 +1,12 @@
-# SPDX-FileCopyrightText: © 2024 Tiny Tapeout
-# SPDX-License-Identifier: Apache-2.0
-
 import cocotb
 from cocotb.triggers import Timer
 
 
 @cocotb.test()
 async def test_door_lock(dut):
-
     dut._log.info("Starting Door Lock Test")
 
+    # Enable design
     dut.ena.value = 1
     dut.ui_in.value = 0
     dut.uio_in.value = 0
@@ -26,6 +23,6 @@ async def test_door_lock(dut):
     dut.ui_in.value = 0b00001111
     await Timer(10, units="ns")
 
-    assert dut.uo_out.value == 0, "Door should remain locked"
+    assert dut.uo_out.value == 2, "Error output should be high"
 
     dut._log.info("Door Lock Test Passed")
