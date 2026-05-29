@@ -37,16 +37,16 @@ jobs:
       - name: GL test
         uses: TinyTapeout/tt-gds-action/gl_test@ttgf26a
 
-  viewer:
-  needs: gds
-  runs-on: ubuntu-24.04
+  github-pages:
+    needs: gds
+    runs-on: ubuntu-24.04
 
-  environment:
-    name: github-pages
+      environment:
+        name: github-pages
 
-  permissions:
-    pages: write
-    id-token: write
+      permissions:
+        pages: write
+        id-token: write
 
-  steps:
-    - uses: TinyTapeout/tt-gds-action/viewer@ttgf26a
+      steps:
+        - uses: TinyTapeout/tt-gds-action/viewer@ttgf26a
